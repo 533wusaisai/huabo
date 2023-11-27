@@ -17,17 +17,18 @@ const log4js = require("./utils/log4");
 app.use(koaStatic(path.join(__dirname, "./public")));
 
 app.use(cors());
-app.use(bodyParser());
+// app.use(bodyParser());
 
 app.use(
-  koaBody({
-    multipart: true,
-    formidable: {
-      maxFileSize: 200 * 1024 * 1024,
-      uploadDir: path.join(__dirname, "./public"),
-      keepExtensions: true,
-    },
-  })
+	koaBody(),
+	// {
+	// multipart: true,
+	// formidable: {
+	//   maxFileSize: 200 * 1024 * 1024,
+	//   uploadDir: path.join(__dirname, "./public"),
+	//   keepExtensions: true,
+	// },
+	// }
 );
 app.use(router.routes());
 

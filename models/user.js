@@ -5,18 +5,15 @@
 const mongoose = require("mongoose");
 
 const registerSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    require: true,
-  },
-  password: {
-    type: String,
-    require: true,
-  },
-  phone: {
-    type: Number,
-    require: true,
-  },
+	userName: {
+		type: String,
+	},
+	password: {
+		type: String,
+	},
+	phone: {
+		type: String,
+	},
 });
 
 const loginSchema = new mongoose.Schema({

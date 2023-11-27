@@ -7,13 +7,13 @@
 const { Register, Login } = require("../models/user");
 
 const registerInfo = async (ctx) => {
-  const userModel = new Register(ctx.request.body);
-  const dbBack = await userModel.save();
-  ctx.body = {
-    code: 200,
-    success: true,
-    message: "注册成功",
-  };
+	const userModel = new Register(ctx.request.body);
+	//  await userModel.save();
+	// 	ctx.body = {
+	// 		code: 200,
+	// 		success: true,
+	// 		message: "注册成功",
+	// 	};
 };
 const loginInfo = async (ctx) => {
   // ctx.body = dbBack;
