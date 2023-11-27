@@ -1,5 +1,5 @@
 /**
- * @description 默认配置文件
+ * @description 数据库环境配置文件
  */
 module.exports = {
   dataBaseDev: "mongodb://127.0.0.1:27017/hb",

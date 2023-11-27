@@ -7,7 +7,8 @@
 const { Register, Login } = require("../models/user");
 
 const registerInfo = async (ctx) => {
-	const userModel = new Register(ctx.request.body);
+	// const userModel = new Register(ctx.request.body);
+	ctx.body = ctx.request.body;
 	//  await userModel.save();
 	// 	ctx.body = {
 	// 		code: 200,
