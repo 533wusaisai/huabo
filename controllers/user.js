@@ -4,20 +4,72 @@
  * 注意： 用户登录 用户名 密码
  */
 
-const { Register, Login } = require("../models/user");
+const { User } = require("../models/user");
 
+// 注册
 const registerInfo = async (ctx) => {
-	// const userModel = new Register(ctx.request.body);
-	ctx.body = ctx.request.body;
-	//  await userModel.save();
-	// 	ctx.body = {
-	// 		code: 200,
-	// 		success: true,
-	// 		message: "注册成功",
-	// 	};
+	const { username } = ctx.request.body;
+	try {
+		let userRegister;
+		if (username) {
+			userRegister = await User.find({ username });
+		}
+		if (userRegister.length > 0) {
+			ctx.body = {
+				data: "注册失败!",
+				message: "该用户已存在！",
+				success: false,
+				code: 200,
+			};
+		} else {
+			const userModel = new User(ctx.request.body);
+			const saveUser = await userModel.save();
+			ctx.body = {
+				data: "注册成功！",
+				message: "",
+				success: true,
+				code: 200,
+			};
+		}
+	} catch (error) {
+		ctx.body = {
+			message: error.message,
+			data: "注册失败！",
+			success: false,
+			code: -1,
+		};
+	}
 };
+// 登录
+// TODO: token 生成
 const loginInfo = async (ctx) => {
-  // ctx.body = dbBack;
+	const { username } = ctx.request.body;
+	try {
+		const userLogin = await User.findOne({ username });
+		console.log(userLogin);
+		if (userLogin) {
+			ctx.body = {
+				data: "登录成功！",
+				message: "",
+				success: true,
+				code: 200,
+			};
+		} else {
+			ctx.body = {
+				data: "登录失败!",
+				maessage: "该用户未注册！",
+				success: false,
+				code: 200,
+			};
+		}
+	} catch (error) {
+		ctx.body = {
+			message: error.message,
+			data: "登录失败!",
+			success: false,
+			code: -1,
+		};
+	}
 };
 
 module.exports = {

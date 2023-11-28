@@ -6,7 +6,9 @@ require("../db");
 const Router = require("@koa/router");
 const upload = require("./storge");
 
-const router = new Router();
+const router = new Router({
+	prefix: "/api/v1",
+});
 
 const { registerInfo, loginInfo } = require("../controllers/user");
 const { uploadImage } = require("../controllers/upload");
