@@ -46,7 +46,6 @@ const loginInfo = async (ctx) => {
 	const { username } = ctx.request.body;
 	try {
 		const userLogin = await User.findOne({ username });
-		console.log(userLogin);
 		if (userLogin) {
 			ctx.body = {
 				data: "登录成功！",
