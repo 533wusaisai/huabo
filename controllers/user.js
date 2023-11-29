@@ -10,18 +10,15 @@ const { User } = require("../models/user");
 const registerInfo = async (ctx) => {
 	const { username } = ctx.request.body;
 	try {
-		let userRegister;
-		if (username) {
-			userRegister = await User.find({ username });
-		}
-		if (userRegister.length > 0) {
+		let userRegister = await User.find({ username });
+		if (userRegister) {
 			ctx.body = {
 				data: "注册失败!",
 				message: "该用户已存在！",
 				success: false,
 				code: 200,
 			};
-		} else {
+
 			const userModel = new User(ctx.request.body);
 			const saveUser = await userModel.save();
 			ctx.body = {
@@ -46,6 +43,7 @@ const loginInfo = async (ctx) => {
 	const { username } = ctx.request.body;
 	try {
 		const userLogin = await User.findOne({ username });
+		// 检查是否存在
 		if (userLogin) {
 			ctx.body = {
 				data: "登录成功！",
@@ -61,6 +59,8 @@ const loginInfo = async (ctx) => {
 				code: 200,
 			};
 		}
+		// 检查密码
+		// 创建token
 	} catch (error) {
 		ctx.body = {
 			message: error.message,
