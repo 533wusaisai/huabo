@@ -3,7 +3,8 @@
  * 注意： 注册信息 用户名 密码 密码不能明文保存 需要做加密处理
  * 注意： 用户登录 用户名 密码
  */
-
+const Redis = require("ioredis");
+const redis = new Redis();
 const { User } = require("../models/user");
 
 // 注册
@@ -70,6 +71,25 @@ const loginInfo = async (ctx) => {
 		};
 	}
 };
+// Koa Route
+// router.get('/user/:id', async (ctx) => {
+//   const userId = ctx.params.id;
+//   const cacheKey = `user:${userId}`;
+
+  // 尝试从 Redis 获取用户数据
+//   let user = await redis.get(cacheKey);
+
+//   if (user) {
+//     user = JSON.parse(user);
+//   } else {
+    // 如果 Redis 中没有，从 MongoDB 获取
+//     user = await User.findById(userId);
+    // 将用户数据存储到 Redis，设置过期时间为 60 秒
+//     await redis.set(cacheKey, JSON.stringify(user), 'EX', 60);
+//   }
+
+//   ctx.body = user;
+// });
 
 module.exports = {
   registerInfo,
