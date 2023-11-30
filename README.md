@@ -2,7 +2,7 @@
   - https://www.jianshu.com/p/ba0bc65eed71
 
 
-### hb-cli
+### hb-web
   - config 数据库环境地址配置
   - contorollers 控制器  请求地址 执行的方法
   - db 数据库连接
