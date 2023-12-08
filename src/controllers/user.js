@@ -47,27 +47,31 @@ const loginInfo = async (ctx) => {
 		// 检查是否存在
 		if (userLogin) {
 			ctx.body = {
-				data: "登录成功！",
+				data: {
+					data: "登录成功!",
+				},
 				message: "",
 				success: true,
 				code: 200,
 			};
 		} else {
 			ctx.body = {
-				data: "登录失败!",
-				maessage: "该用户未注册！",
+				data: "该用户未注册！",
+				message: "该用户未注册！",
 				success: false,
-				code: 200,
+				code: -1,
 			};
 		}
 		// 检查密码
 		// 创建token
 	} catch (error) {
 		ctx.body = {
-			message: error.message,
-			data: "登录失败!",
-			success: false,
-			code: -1,
+			data: {
+				message: error.message,
+				data: "登录失败!",
+				success: false,
+				code: -1,
+			},
 		};
 	}
 };
